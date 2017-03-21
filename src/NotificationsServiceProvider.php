@@ -24,11 +24,11 @@ class NotificationsServiceProvider extends ServiceProvider
         ], 'notifications-migration');
 
         $this->publishes([
-            __DIR__.'/../resources/assets/js/components/core' => base_path('resources/assets/js/components/core'),
+            __DIR__.'/../resources/assets/js/components' => resource_path('assets/js/components/laravel-enso'),
         ], 'notifications-component');
 
         $this->publishes([
-            __DIR__.'/../resources/views/partials' => base_path('resources/views/partials'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-enso/notifications'),
         ], 'notifications-partial');
     }
 
