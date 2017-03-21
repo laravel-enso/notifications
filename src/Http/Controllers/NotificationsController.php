@@ -7,7 +7,6 @@ use Jenssegers\Date\Date;
 
 class NotificationsController extends Controller
 {
-
     public function getCount()
     {
         return [
