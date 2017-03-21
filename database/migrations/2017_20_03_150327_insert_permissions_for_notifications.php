@@ -30,25 +30,25 @@ class InsertPermissionsForNotifications extends Migration
 
             $permissions = [
                 [
-                    'name' => 'core.notifications.getCount',
+                    'name'        => 'core.notifications.getCount',
                     'description' => 'Set All notifications as Read',
-                    'type' => 1
+                    'type'        => 1,
                 ],
                 [
-                    'name' => 'core.notifications.getList',
+                    'name'        => 'core.notifications.getList',
                     'description' => 'Get Users Notifications Count',
-                    'type' => 0
+                    'type'        => 0,
                 ],
                 [
-                    'name' => 'core.notifications.markAsRead',
+                    'name'        => 'core.notifications.markAsRead',
                     'description' => 'Get Users Notifications List',
-                    'type' => 0
+                    'type'        => 0,
                 ],
                 [
-                    'name' => 'core.notifications.setIsRead',
+                    'name'        => 'core.notifications.setIsRead',
                     'description' => 'Set Notifications as Read',
-                    'type' => 1
-                ]
+                    'type'        => 1,
+                ],
             ];
 
             $adminRole = Role::whereName('admin')->first();
