@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\Notifications\Http\Controllers;
+namespace LaravelEnso\Notifications\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Jenssegers\Date\Date;
+use Carbon\Carbon;
 
 class NotificationsController extends Controller
 {
@@ -25,7 +25,7 @@ class NotificationsController extends Controller
     {
         request()->user()->unreadNotifications->markAsRead();
 
-        return Date::now();
+        return Carbon::now();
     }
 
     public function clearAll()
