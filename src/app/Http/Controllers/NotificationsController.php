@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Notifications\App\Http\Controllers;
+namespace LaravelEnso\Notifications\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
