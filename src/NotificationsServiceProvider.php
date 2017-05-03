@@ -14,6 +14,7 @@ class NotificationsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishesAll();
+
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
@@ -34,6 +35,10 @@ class NotificationsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/resources/views' => resource_path('views/vendor/laravel-enso/notifications'),
         ], 'notifications-view');
+
+        $this->publishes([
+            __DIR__.'/resources/assets/js/components' => resource_path('assets/js/vendor/laravel-enso/components'),
+        ], 'update');
     }
 
     /**

@@ -10,7 +10,6 @@ class NotificationsController extends Controller
     public function getCount()
     {
         return [
-
             'unread' => request()->user()->unreadNotifications->count(),
             'total'  => request()->user()->notifications->count(),
         ];
