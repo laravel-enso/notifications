@@ -1,36 +1,66 @@
 <template>
+
 	<li id="notifications" class="dropdown notifications-menu">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown" @click="getList()">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+			@click="getList()">
 			<i class="fa fa-bell-o"></i>
-			<span class="label label-danger" v-if="unreadCount" v-text="unreadCount"></span>
+			<span class="label label-danger"
+				v-if="unreadCount"
+				v-text="unreadCount">
+			</span>
 		</a>
 		<ul class="dropdown-menu" v-cloak>
-			<li class="header" v-if="unreadCount"><slot name="you-have"></slot> {{ unreadCount }} <span v-if="unreadCount == 1"><slot name="one"></slot></span><span v-else><slot name="many"></slot></span></li>
-			<li class="header" v-else><slot name="no-notifications"></slot></li>
-				<li>
-					<ul class="menu">
-						<li><!-- start message -->
-						  <a href="#">
-						    <div class="pull-left">
-						      <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-						    </div>
-						    <h4>
-						      Support Team
-						      <small><i class="fa fa-clock-o"></i> 5 mins</small>
-						    </h4>
-						    <p>Why not buy a new awesome theme?</p>
-						  </a>
-						</li>
-						<li>
-							<a :href="notification.data.link" v-for="notification in notificationsList">
-								<i class="fa fa-envelope-o text-yellow"></i><span :class="{ 'bold' : !notification.read_at }">{{ notification.data.body }}</span>
-							</a>
-						</li>
-					</ul>
-				</li>
-			<li class="footer"><a href="#" @click="clearNotifications">Clear All</a></li>
+			<li class="header">
+				<span v-if="unreadCount">
+					<slot name="you-have"></slot>
+					<b>{{ unreadCount }}</b>
+					<span v-if="unreadCount == 1">
+						<slot name="one"></slot>
+					</span>
+					<span v-else>
+						<slot name="many"></slot>
+					</span>
+				</span>
+				<span v-else>
+					<slot name="no-notifications"></slot>
+				</span>
+				<span class="pull-right" v-if="loading">
+					<i class="fa fa-spinner fa-spin text-orange"></i>
+				</span>
+			</li>
+			<li>
+				<ul class="menu" id="notifications-body" @scroll="computeScrollPosition($event)">
+					<li v-for="notification in notifications">
+						<a href="#" @click.up="process(notification)">
+							<i class="fa fa-envelope-open-o text-green"
+								v-if="notification.read_at">
+							</i>
+							<i class="fa fa-envelope-o text-orange"
+								v-else>
+							</i>
+							<span :class="{ 'bold' : !notification.read_at }">
+								{{ notification.data.body }}
+							</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li class="footer" v-if="unreadCount || notifications.length">
+				<a href="#">
+					<a href="#" class="pull-left"
+						@click="markAllAsRead()">
+						<slot name="mark-all-as-read"></slot>
+					</a>
+				  	<a href="#" class="pull-right"
+				  		@click="clearAll()">
+				  		<slot name="clear-all"></slot>
+				  	</a>
+				  	<div class="clearfix"></div>
+				</a>
+			</li>
 		</ul>
 	</li>
+
 </template>
 
 <script>
@@ -40,65 +70,134 @@
 			userId: {
 				type: Number,
 				required: true
+			},
+			paginate: {
+				type: Number,
+				default: 6
 			}
 		},
-		data: function() {
+
+		data() {
 			return {
 				unreadCount: 0,
-				totalNotificationsCount: 0,
-				notificationsList: []
+				totalCount: 0,
+				notifications: [],
+				needsUpdate: true,
+				offset: 0,
+				loading: false
 			}
 		},
-		computed: {
-			needsUpdate: function() {
-				return this.unreadCount || (this.totalNotificationsCount !== this.notificationsList.length) ? true : false;
-			}
-		},
+
 		methods: {
-			getNotificationsCount: function() {
-				axios.get('/core/notifications/getCount').then((response) => {
-					this.unreadCount = parseInt(response.data.unread);
-					this.totalNotificationsCount = parseInt(response.data.total);
+			getCount() {
+				axios.get('/core/notifications/getCount').then(response => {
+					this.unreadCount = response.data;
+				}).catch(error => {
+					this.reportEnsoException(error);
 				});
 			},
-			getList: function() {
-				if (this.needsUpdate) {
-					axios.get('/core/notifications/getList').then((response) => {
-						this.notificationsList = response.data;
-					}).then(() => {
-						if(this.needsUpdate) {
-							this.markAsRead();
-						}
-					});
+			getList() {
+				if (!this.needsUpdate || this.loading) {
+					return false;
 				}
+
+				this.loading = true;
+
+				axios.get('/core/notifications/getList/' + this.offset + '/' + this.paginate).then(response => {
+					this.notifications = this.offset ? this.notifications.concat(response.data) : response.data;
+					this.offset = this.notifications.length;
+					this.needsUpdate = false;
+					this.loading = false;
+				}).catch(error => {
+					this.loading = false;
+					this.reportEnsoException(error);
+				});
 			},
-			markAsRead: function() {
-				axios.patch('/core/notifications/markAsRead').then((response) => {
+			getMore() {
+				this.needsUpdate = true;
+				this.getList();
+				$('#notifications').addClass('open');
+			},
+			process(notification) {
+				axios.patch('/core/notifications/markAsRead/' + notification.id).then(response => {
+					this.unreadCount = this.unreadCount ? --this.unreadCount : this.unreadCount;
+					window.location.href = notification.data.link;
+					notification = response.data; // fixme
+				}).catch(error => {
+					this.reportEnsoException(error);
+				});
+			},
+			markAllAsRead() {
+				axios.patch('/core/notifications/markAllAsRead').then(response => {
+					this.setAllAsRead();
+				}).catch(error => {
+					this.reportEnsoException(error);
+				});
+			},
+			setAllAsRead() {
+				this.notifications.forEach(notification => {
+					notification.read_at = notification.read_at || moment().format('Y-MM-DD H:mm:s');
+				});
+
+				this.unreadCount = 0;
+			},
+			clearAll() {
+				axios.patch('/core/notifications/clearAll').then(response => {
+					this.notifications = [];
 					this.unreadCount = 0;
-					this.totalNotificationsCount = this.notificationsList.length;
+				}).catch(error => {
+					this.reportEnsoException(error);
 				});
 			},
-			clearNotifications: function() {
-				axios.patch('/core/notifications/clearAll').then((response) => {
-						this.notificationsList = [];
-						this.unreadCount = 0;
-						this.totalNotificationsCount = 0;
-				});
-			},
-			listen: function() {
+			listen() {
 				let self = this;
+
 				Echo.private('App.User.' + this.userId).notification(function(notification) {
 					self.unreadCount++;
-					if ($('#notifications').hasClass('open')) {
-						self.getList();
-					}
+					self.needsUpdate = true;
+					self.offset = 0;
 				});
+
+				this.geListIfBodyIsOpen();
+			},
+			geListIfBodyIsOpen() {
+				if ($('#notifications').hasClass('open')) {
+					self.getList();
+					document.getElementById('notifications-body').scrollTop = 0;
+				}
+			},
+			computeScrollPosition(event) {
+				let a = event.target.scrollTop,
+				 	b = event.target.scrollHeight - event.target.clientHeight,
+					c = a / b;
+
+				if (c === 1) {
+					this.needsUpdate = true;
+					this.getList();
+				}
 			}
 		},
-		mounted: function() {
-			this.getNotificationsCount();
+
+		mounted() {
+			this.getCount();
 			this.listen();
 		}
 	}
 
 </script>
+
+<style>
+
+	li#notifications.notifications-menu >.dropdown-menu>li.header {
+		font-size: 13px;
+	}
+
+	li#notifications > ul.dropdown-menu {
+		font-size: 12px;
+	}
+
+	.navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+		width: 300px;
+	}
+
+</style>
