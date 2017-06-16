@@ -3,7 +3,6 @@
 namespace LaravelEnso\Notifications\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationsController extends Controller

@@ -1,8 +1,8 @@
 <?php
 
 Route::group([
-	'namespace' => 'LaravelEnso\Notifications\app\Http\Controllers',
-	'middleware' => ['web', 'auth', 'core']
+    'namespace'  => 'LaravelEnso\Notifications\app\Http\Controllers',
+    'middleware' => ['web', 'auth', 'core'],
 ], function () {
     Route::group(['prefix' => 'core/notifications', 'as' => 'core.notifications.'], function () {
         Route::get('getCount', 'NotificationsController@getCount')->name('getCount');
