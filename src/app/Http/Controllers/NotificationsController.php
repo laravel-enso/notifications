@@ -4,27 +4,31 @@ namespace LaravelEnso\Notifications\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationsController extends Controller
 {
     public function getCount()
     {
-        return [
-            'unread' => request()->user()->unreadNotifications->count(),
-            'total'  => request()->user()->notifications->count(),
-        ];
+        return request()->user()->unreadNotifications->count();
     }
 
-    public function getList()
+    public function getList(int $offset, int $paginate)
     {
-        return request()->user()->notifications;
+        return request()->user()->notifications()
+            ->skip($offset)
+            ->take($paginate)
+            ->get();
     }
 
-    public function markAsRead()
+    public function markAsRead(DatabaseNotification $notification)
+    {
+        return $notification->markAsRead();
+    }
+
+    public function markAllAsRead()
     {
         request()->user()->unreadNotifications->markAsRead();
-
-        return Carbon::now();
     }
 
     public function clearAll()

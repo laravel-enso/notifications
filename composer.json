@@ -1,7 +1,7 @@
 {
     "name": "laravel-enso/notifications",
     "description": "Notifications manager for LaravelEnso",
-    "type": "library",
+    "type": "depedency",
     "license": "MIT",
     "authors": [{
         "name": "mishu",
