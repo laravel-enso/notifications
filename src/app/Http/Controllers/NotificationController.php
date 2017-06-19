@@ -5,7 +5,7 @@ namespace LaravelEnso\Notifications\app\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Notifications\DatabaseNotification;
 
-class NotificationsController extends Controller
+class NotificationController extends Controller
 {
     public function getCount()
     {
