@@ -9,7 +9,6 @@ Laravel Enso Notifications manager depedency
 # Use
 
 Publish the component with `artisan vendor:publish --tag=notifications-component`
-If you need to customize the view run php `artisan vendor:publish --tag=notifications-view`
 
 # Note
 

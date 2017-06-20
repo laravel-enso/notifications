@@ -19,10 +19,6 @@ class NotificationsServiceProvider extends ServiceProvider
         ], 'notifications-component');
 
         $this->publishes([
-            __DIR__.'/resources/views' => resource_path('views/vendor/laravel-enso/notifications'),
-        ], 'notifications-view');
-
-        $this->publishes([
             __DIR__.'/resources/assets/js/components' => resource_path('assets/js/vendor/laravel-enso/components'),
         ], 'update');
     }
