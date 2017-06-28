@@ -4,17 +4,43 @@
 [![Total Downloads](https://poser.pugx.org/laravel-enso/notifications/downloads)](https://packagist.org/packages/laravel-enso/notifications)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/notifications/version)](https://packagist.org/packages/laravel-enso/notifications)
 
-Laravel Enso Notifications manager depedency
+Notifications functionality dependency for [Laravel Enso](https://github.com/laravel-enso/Enso)
 
-# Use
+### Details
 
-Publish the component with `artisan vendor:publish --tag=notifications-component`
+- uses [Pusher](https://pusher.com/) and [Laravel's notification infrastructure](https://laravel.com/docs/5.4/broadcasting) to bring minimal-setup notification functionality
+- comes with a VueJS embeddable component that displays notifications
+- allows the lazy loading of notifications
+- read and unread notifications are visually differentiated
 
-# Note
+### Installation Steps
 
-Included in LaraveEnso Core & Coreplus
+1. Add `LaravelEnso\Notifications\NotificationsServiceProvider::class` to `config/app.php`
 
-## TO DO
+2. Run the migrations
 
-- [ ] sync-json command / button
+3. Publish the component with `artisan vendor:publish --tag=notifications-component`
 
+4. If not registered already, register on [Pusher](https://pusher.com/) and set your credentials in your `.env` file:
+
+    ````
+    BROADCAST_DRIVER=pusher
+    PUSHER_APP_ID=
+    PUSHER_APP_KEY=
+    PUSHER_APP_SECRET=
+    ````
+
+5. Install the pusher js library `npm install pusher-js`
+6. Uncomment the pusher and [Laravel Echo](https://laravel.com/docs/5.4/broadcasting#installing-laravel-echo) related lines in `bootstrap.js`
+7. Set your pusher key inside the Echo declaration within `bootstrap.js`
+8. Include the vue-component in your `app.js` and compile everything with `gulp` / `npm run dev`
+    
+### Publishes
+
+- `php artisan vendor:publish --tag=notifications-component` - VueJS component
+- `php artisan vendor:publish --tag=enso-update` - a common alias for when wanting to update the VueJS component, 
+once a newer version is released
+
+### Contributions
+
+are welcome
