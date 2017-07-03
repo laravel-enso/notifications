@@ -6,6 +6,8 @@
 
 Notifications functionality dependency for [Laravel Enso](https://github.com/laravel-enso/Enso)
 
+[![Watch the demo](https://laravel-enso.github.io/notification/screenshots/Selection_033.png)](https://laravel-enso.github.io/notification/videos/demo_01.webm)
+
 ### Details
 
 - uses [Pusher](https://pusher.com/) and [Laravel's notification infrastructure](https://laravel.com/docs/5.4/broadcasting) to bring minimal-setup notification functionality
