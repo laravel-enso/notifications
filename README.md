@@ -6,7 +6,7 @@
 
 Notifications functionality dependency for [Laravel Enso](https://github.com/laravel-enso/Enso)
 
-[![Watch the demo](https://laravel-enso.github.io/notification/screenshots/Selection_033.png)](https://laravel-enso.github.io/notification/videos/demo_01.webm)
+[![Watch the demo](https://laravel-enso.github.io/notifications/screenshots/Selection_033.png)](https://laravel-enso.github.io/notifications/videos/demo_01.webm)
 
 ### Details
 
