@@ -1,9 +1,11 @@
+<!--h--> 
 # Notifications
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/950c5954bb654bb588061a3f793f4697)](https://www.codacy.com/app/laravel-enso/Notifications?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/Notifications&amp;utm_campaign=Badge_Grade)
 [![StyleCI](https://styleci.io/repos/85684795/shield?branch=master)](https://styleci.io/repos/85684795)
 [![License](https://poser.pugx.org/laravel-enso/imagetransformer/license)](https://https://packagist.org/packages/laravel-enso/imagetransformer)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/notifications/downloads)](https://packagist.org/packages/laravel-enso/notifications)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/notifications/version)](https://packagist.org/packages/laravel-enso/notifications)
+<!--/h-->
 
 Notifications functionality dependency for [Laravel Enso](https://github.com/laravel-enso/Enso)
 
@@ -11,13 +13,14 @@ Notifications functionality dependency for [Laravel Enso](https://github.com/lar
 
 <sup>click on the photo to view a short demo in compatible browsers</sup>
 
-### Details
+### Features
 
 - uses [Pusher](https://pusher.com/) and [Laravel's notification infrastructure](https://laravel.com/docs/5.4/broadcasting) to bring minimal-setup notification functionality
 - users can also be notified via email
 - comes with a VueJS embeddable component that displays notifications
 - allows the lazy loading of notifications
-- read and unread notifications are visually differentiated and can be manualy/automatically marked as read, as well as cleared 
+- read and unread notifications are visually differentiated and can be manualy/automatically marked as read, as well as cleared
+- polymorphic relationships are used, in order to be able to attach notifications to any entity
 
 ### Installation Steps
 
@@ -47,6 +50,12 @@ Notifications functionality dependency for [Laravel Enso](https://github.com/lar
 - `php artisan vendor:publish --tag=enso-update` - a common alias for when wanting to update the VueJS component, 
 once a newer version is released
 
+<!--h-->
 ### Contributions
 
-are welcome
+are welcome. Pull requests are great, but issues are good too.
+
+### License
+
+This package is released under the MIT license.
+<!--/h-->
