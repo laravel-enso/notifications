@@ -1,4 +1,4 @@
-<!--h--> 
+<!--h-->
 # Notifications
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/950c5954bb654bb588061a3f793f4697)](https://www.codacy.com/app/laravel-enso/Notifications?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/Notifications&amp;utm_campaign=Badge_Grade)
 [![StyleCI](https://styleci.io/repos/85684795/shield?branch=master)](https://styleci.io/repos/85684795)
@@ -9,7 +9,7 @@
 
 Notifications functionality dependency for [Laravel Enso](https://github.com/laravel-enso/Enso)
 
-[![Watch the demo](https://laravel-enso.github.io/notifications/screenshots/Selection_033.png)](https://laravel-enso.github.io/notifications/videos/demo_01.webm)
+[![Watch the demo](https://laravel-enso.github.io/notifications/screenshots/Selection_033_thumb.png)](https://laravel-enso.github.io/notifications/videos/demo_01.webm)
 
 <sup>click on the photo to view a short demo in compatible browsers</sup>
 
@@ -43,11 +43,11 @@ Notifications functionality dependency for [Laravel Enso](https://github.com/lar
 6. Uncomment the pusher and [Laravel Echo](https://laravel.com/docs/5.4/broadcasting#installing-laravel-echo) related lines in `bootstrap.js`
 7. Set your pusher key inside the Echo declaration within `bootstrap.js`
 8. Include the vue-component in your `app.js` and compile everything with `gulp` / `npm run dev`
-    
+
 ### Publishes
 
 - `php artisan vendor:publish --tag=notifications-component` - VueJS component
-- `php artisan vendor:publish --tag=enso-update` - a common alias for when wanting to update the VueJS component, 
+- `php artisan vendor:publish --tag=enso-update` - a common alias for when wanting to update the VueJS component,
 once a newer version is released
 
 <!--h-->
