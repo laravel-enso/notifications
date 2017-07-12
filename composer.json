@@ -1,12 +1,21 @@
 {
     "name": "laravel-enso/notifications",
     "description": "Notifications functionality dependency for LaravelEnso",
+    "keywords": [
+        "laravel-enso",
+        "notifications",
+        "push-notifications",
+        "laravel-notifications"
+    ],
+    "homepage": "https://github.com/laravel-enso/Notifications",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Mishu",
-            "email": "mishu@xtelecom.ro"
+            "name": "Adrian Ocneanu",
+            "email": "aocneanu@gmail.com",
+            "homepage": "https://laravel-enso.com",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -18,6 +27,14 @@
     "autoload": {
         "psr-4": {
             "LaravelEnso\\Notifications\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelEnso\\NotificationsServiceProvider"
+            ],
+            "aliases": {}
         }
     }
 }
