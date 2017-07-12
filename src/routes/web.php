@@ -6,14 +6,14 @@ Route::middleware(['web', 'auth', 'core'])
         Route::prefix('core/notifications')->as('core.notifications.')
             ->group(function () {
                 Route::get('getCount', 'NotificationController@getCount')
-                	->name('getCount');
+                    ->name('getCount');
                 Route::get('getList/{offset}/{paginate}', 'NotificationController@getList')
-                	->name('getList');
+                    ->name('getList');
                 Route::patch('markAsRead/{notification}', 'NotificationController@markAsRead')
-                	->name('markAsRead');
+                    ->name('markAsRead');
                 Route::patch('markAllAsRead', 'NotificationController@markAllAsRead')
-                	->name('markAllAsRead');
+                    ->name('markAllAsRead');
                 Route::patch('clearAll', 'NotificationController@clearAll')
-                	->name('clearAll');
+                    ->name('clearAll');
             });
     });
