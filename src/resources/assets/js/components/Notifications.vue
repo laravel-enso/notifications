@@ -12,17 +12,17 @@
 		<ul class="dropdown-menu" v-cloak>
 			<li class="header">
 				<span v-if="unreadCount">
-					<slot name="you-have"></slot>
+					{{ labels.youHave }}
 					<b>{{ unreadCount }}</b>
 					<span v-if="unreadCount == 1">
-						<slot name="one"></slot>
+						{{ labels.one }}
 					</span>
 					<span v-else>
-						<slot name="many"></slot>
+						{{ labels.many }}
 					</span>
 				</span>
 				<span v-else>
-					<slot name="no-notifications"></slot>
+					{{ labels.noNotifications }}
 				</span>
 				<span class="pull-right" v-if="loading">
 					<i class="fa fa-spinner fa-spin text-orange"></i>
@@ -49,11 +49,11 @@
 				<a href="#">
 					<a href="#" class="pull-left"
 						@click="markAllAsRead()">
-						<slot name="mark-all-as-read"></slot>
+						{{ labels.markAllAsRead }}
 					</a>
 				  	<a href="#" class="pull-right"
 				  		@click="clearAll()">
-				  		<slot name="clear-all"></slot>
+				  		{{ labels.clearAll }}
 				  	</a>
 				  	<div class="clearfix"></div>
 				</a>
@@ -79,6 +79,7 @@
 
 		data() {
 			return {
+				labels: Store.labels,
 				unreadCount: 0,
 				totalCount: 0,
 				notifications: [],

@@ -7,7 +7,7 @@ Route::middleware(['web', 'auth', 'core'])
             ->group(function () {
                 Route::get('getCount', 'NotificationController@getCount')
                     ->name('getCount');
-                Route::get('getList/{offset}/{paginate}', 'NotificationController@getList')
+                Route::get('getList/{offset}/{paginate}', 'NotificationController@index')
                     ->name('getList');
                 Route::patch('markAsRead/{notification}', 'NotificationController@markAsRead')
                     ->name('markAsRead');

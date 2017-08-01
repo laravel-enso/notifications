@@ -3,7 +3,7 @@
 use App\User;
 use Faker\Factory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use LaravelEnso\Notifications\app\Notifications\TestNotification;
+use Illuminate\Notifications\Notification;
 use Tests\TestCase;
 
 class NotificationTest extends TestCase
@@ -65,3 +65,24 @@ class NotificationTest extends TestCase
         $this->assertEquals(0, $this->user->notifications->count());
     }
 }
+
+class TestNotification extends Notification
+{
+    public function __construct($body)
+    {
+        $this->body = $body;
+    }
+
+    public function via($notifiable)
+    {
+        return ['database'];
+    }
+
+    public function toArray($notifiable)
+    {
+        return [
+            'body' => $this->body,
+        ];
+    }
+}
+
