@@ -85,4 +85,3 @@ class TestNotification extends Notification
         ];
     }
 }
-
