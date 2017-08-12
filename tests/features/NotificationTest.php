@@ -19,7 +19,7 @@ class NotificationTest extends TestHelper
 
         // $this->disableExceptionHandling();
         $this->faker = Factory::create();
-        $this->user  = User::first();
+        $this->user = User::first();
         $this->signIn($this->user);
     }
 
