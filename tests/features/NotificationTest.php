@@ -20,7 +20,7 @@ class NotificationTest extends TestCase
 
         // $this->withoutExceptionHandling();
         $this->faker = Factory::create();
-        $this->user  = User::first();
+        $this->user = User::first();
         $this->signIn($this->user);
     }
 
