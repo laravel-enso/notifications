@@ -2,13 +2,14 @@
 
 use App\User;
 use Faker\Factory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\Notification;
-use LaravelEnso\TestHelper\app\Classes\TestHelper;
+use LaravelEnso\TestHelper\app\Traits\SignIn;
+use Tests\TestCase;
 
-class NotificationTest extends TestHelper
+class NotificationTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase, SignIn;
 
     private $faker;
     private $user;
@@ -17,9 +18,9 @@ class NotificationTest extends TestHelper
     {
         parent::setUp();
 
-        // $this->disableExceptionHandling();
+        // $this->withoutExceptionHandling();
         $this->faker = Factory::create();
-        $this->user = User::first();
+        $this->user  = User::first();
         $this->signIn($this->user);
     }
 
