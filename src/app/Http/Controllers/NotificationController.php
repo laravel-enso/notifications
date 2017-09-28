@@ -22,7 +22,7 @@ class NotificationController extends Controller
 
     public function markAsRead(DatabaseNotification $notification)
     {
-        return $notification->markAsRead();
+        return tap($notification)->markAsRead();
     }
 
     public function markAllAsRead()
