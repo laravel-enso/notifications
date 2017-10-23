@@ -17,20 +17,14 @@ Notifications functionality dependency for [Laravel Enso](https://github.com/lar
 
 - uses [Pusher](https://pusher.com/) and [Laravel's notification infrastructure](https://laravel.com/docs/5.4/broadcasting) to bring minimal-setup notification functionality
 - users can also be notified via email
-- comes with a VueJS embeddable component that displays notifications
 - allows the lazy loading of notifications
 - read and unread notifications are visually differentiated and can be manualy/automatically marked as read, as well as cleared
 - polymorphic relationships are used, in order to be able to attach notifications to any entity
 
 ### Installation Steps
 
-1. Add `LaravelEnso\Notifications\NotificationsServiceProvider::class` to `config/app.php`
 
-2. Run the migrations
-
-3. Publish the component with `artisan vendor:publish --tag=notifications-component`
-
-4. If not registered already, register on [Pusher](https://pusher.com/) and set your credentials in your `.env` file:
+If not registered already, register on [Pusher](https://pusher.com/) and then set your credentials in your `.env` file:
 
     ````
     BROADCAST_DRIVER=pusher
@@ -39,16 +33,16 @@ Notifications functionality dependency for [Laravel Enso](https://github.com/lar
     PUSHER_APP_SECRET=
     ````
 
-5. Install the pusher js library `npm install pusher-js`
-6. Uncomment the pusher and [Laravel Echo](https://laravel.com/docs/5.4/broadcasting#installing-laravel-echo) related lines in `bootstrap.js`
-7. Set your pusher key inside the Echo declaration within `bootstrap.js`
-8. Include the vue-component in your `app.js` and compile everything with `gulp` / `npm run dev`
+Once set, these credentials are set during the application init phase.
 
-### Publishes
+### Notes
 
-- `php artisan vendor:publish --tag=notifications-component` - VueJS component
-- `php artisan vendor:publish --tag=enso-update` - a common alias for when wanting to update the VueJS component,
-once a newer version is released
+The [Laravel Enso](https://github.com/laravel-enso/Enso) package comes with this package included.
+
+Depends on:
+ - [Core](https://github.com/laravel-enso/Core) for middleware 
+ - [Structure manager](https://github.com/laravel-enso/StructureManager) for the migrations
+ - [PusherPhpServer](https://github.com/pusher/pusher-php-server) for the integration with pusher 
 
 <!--h-->
 ### Contributions
