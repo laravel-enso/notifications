@@ -9,7 +9,7 @@
 
 Notifications functionality dependency for [Laravel Enso](https://github.com/laravel-enso/Enso)
 
-[![Watch the demo](https://laravel-enso.github.io/notifications/screenshots/Selection_033_thumb.png)](https://laravel-enso.github.io/notifications/videos/demo_01.webm)
+[![Watch the demo](https://laravel-enso.github.io/notifications/screenshots/bulma_033_thumb.png)](https://laravel-enso.github.io/notifications/videos/bulma_demo_01.webm)
 
 <sup>click on the photo to view a short demo in compatible browsers</sup>
 
@@ -18,7 +18,7 @@ Notifications functionality dependency for [Laravel Enso](https://github.com/lar
 - uses [Pusher](https://pusher.com/) and [Laravel's notification infrastructure](https://laravel.com/docs/5.4/broadcasting) to bring minimal-setup notification functionality
 - users can also be notified via email
 - allows the lazy loading of notifications
-- read and unread notifications are visually differentiated and can be manualy/automatically marked as read, as well as cleared
+- read and unread notifications are visually differentiated and can be manually/automatically marked as read, as well as cleared
 - polymorphic relationships are used, in order to be able to attach notifications to any entity
 
 ### Installation Steps
