@@ -23,7 +23,9 @@
         "laravel/framework": "5.5.*",
         "laravel-enso/core": "2.1.*",
         "laravel-enso/structuremanager": "2.1.*",
-        "pusher/pusher-php-server": "^3.0",
+        "pusher/pusher-php-server": "^3.0"
+    },
+    "require-dev": {
         "laravel-enso/testhelper": "1.4.*"
     },
     "autoload": {
