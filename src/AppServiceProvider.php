@@ -4,7 +4,7 @@ namespace LaravelEnso\Notifications;
 
 use Illuminate\Support\ServiceProvider;
 
-class NotificationsServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
