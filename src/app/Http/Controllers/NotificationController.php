@@ -17,7 +17,7 @@ class NotificationController extends Controller
 
     public function getCount()
     {
-        return request()->user()->unreadNotifications->count();
+        return request()->user()->unreadNotifications()->count();
     }
 
     public function markAsRead(DatabaseNotification $notification)
