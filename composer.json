@@ -20,8 +20,8 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel-enso/core": "2.7.*",
-        "laravel-enso/structuremanager": "2.1.*",
+        "laravel-enso/core": "2.8.*",
+        "laravel-enso/structuremanager": "2.2.*",
         "pusher/pusher-php-server": "^3.0"
     },
     "require-dev": {
