@@ -2,23 +2,24 @@
 
 namespace LaravelEnso\Notifications\app\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationController extends Controller
 {
-    public function index(int $offset, int $paginate)
+    public function index(Request $request, int $offset, int $paginate)
     {
-        return request()->user()
+        return $request->user()
             ->notifications()
             ->skip($offset)
             ->take($paginate)
             ->get();
     }
 
-    public function getCount()
+    public function getCount(Request $request)
     {
-        return request()->user()
+        return $request->user()
             ->unreadNotifications()
             ->count();
     }
@@ -29,16 +30,16 @@ class NotificationController extends Controller
             ->markAsRead();
     }
 
-    public function markAllAsRead()
+    public function markAllAsRead(Request $request)
     {
-        request()->user()
+        $request->user()
             ->unreadNotifications
             ->markAsRead();
     }
 
-    public function clearAll()
+    public function clearAll(Request $request)
     {
-        request()->user()
+        $request->user()
             ->notifications()
             ->delete();
     }
