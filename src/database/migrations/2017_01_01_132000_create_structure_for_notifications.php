@@ -9,6 +9,7 @@ class CreateStructureForNotifications extends StructureMigration
     ];
 
     protected $permissions = [
+        ['name' => 'core.notifications.index', 'description' => 'Notifications index', 'type' => 0, 'is_default' => true],
         ['name' => 'core.notifications.getCount', 'description' => 'Get users notifications count', 'type' => 1, 'is_default' => true],
         ['name' => 'core.notifications.getList', 'description' => 'Get users notifications list', 'type' => 0, 'is_default' => true],
         ['name' => 'core.notifications.markAsRead', 'description' => 'Mark notification as read', 'type' => 1, 'is_default' => true],
