@@ -8,7 +8,7 @@
         <div class="columns is-centered"
             v-if="notifications.length">
             <div class="column is-half-desktop">
-                <div class="level">
+                <div class="level is-mobile">
                     <div class="level-left">
                         <div class="level-item">
                             <a class="button is-small is-success"
@@ -40,8 +40,11 @@
                             <fa :icon="notification.data.icon"
                                 v-if="notification.data.icon"/>
                             <span :class="[
-                                    'is-clickable',
-                                    {'has-text-info': notification.data.path && notification.data.path !== '#'}
+                                    'is-clickable', {
+                                        'has-text-info':
+                                            notification.data.path
+                                            && notification.data.path !== '#'
+                                    }
                                 ]"
                                 @click="markAsRead(notification)">
                                 {{ notification.data.body }}
