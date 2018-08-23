@@ -3,14 +3,14 @@
 namespace LaravelEnso\Notifications;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\Notifications\app\Commands\AddMissingPermission;
+use LaravelEnso\Notifications\app\Commands\AddMissingPermissions;
 
 class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
         $this->commands([
-            AddMissingPermission::class,
+            AddMissingPermissions::class,
         ]);
 
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');

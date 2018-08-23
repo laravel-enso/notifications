@@ -12,6 +12,8 @@ Route::middleware(['web', 'auth', 'core'])
             ->name('markAsRead');
         Route::patch('markAllAsRead', 'NotificationController@markAllAsRead')
             ->name('markAllAsRead');
+        Route::delete('clear/{notification}', 'NotificationController@clear')
+            ->name('clear');
         Route::patch('clearAll', 'NotificationController@clearAll')
             ->name('clearAll');
     });

@@ -37,6 +37,12 @@ class NotificationController extends Controller
             ->markAsRead();
     }
 
+    public function clear(DatabaseNotification $notification)
+    {
+        \Log::info($notification);
+        $notification->delete();
+    }
+
     public function clearAll(Request $request)
     {
         $request->user()
