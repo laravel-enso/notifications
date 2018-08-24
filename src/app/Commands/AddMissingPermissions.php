@@ -10,7 +10,7 @@ use LaravelEnso\PermissionManager\app\Models\PermissionGroup;
 class AddMissingPermissions extends Command
 {
     private const Permissions = [
-        'core.notifications.index', 'core.notifications.clear'
+        'core.notifications.index', 'core.notifications.clear',
     ];
 
     protected $signature = 'enso:notifications:add-missing-permissions';
