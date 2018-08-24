@@ -39,7 +39,6 @@ class NotificationController extends Controller
 
     public function clear(DatabaseNotification $notification)
     {
-        \Log::info($notification);
         $notification->delete();
     }
 
