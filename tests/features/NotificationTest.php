@@ -19,16 +19,19 @@ class NotificationTest extends TestCase
         parent::setUp();
 
         // $this->withoutExceptionHandling();
+
+        $this->seed()
+            ->signIn($this->user = User::first());
+
         $this->faker = Factory::create();
-        $this->user = User::first();
-        $this->signIn($this->user);
     }
 
     /** @test */
     public function getUnreadNotifications()
     {
-        $notification = new TestNotification($this->faker->sentence);
-        $this->user->notify($notification);
+        $this->user->notify(
+            new TestNotification($this->faker->sentence)
+        );
 
         $this->assertEquals(1, $this->user->unreadNotifications->count());
     }
@@ -36,20 +39,24 @@ class NotificationTest extends TestCase
     /** @test */
     public function markAsRead()
     {
-        $notification = new TestNotification($this->faker->sentence);
-        $this->user->notify($notification);
+        $this->user->notify(
+            new TestNotification($this->faker->sentence)
+        );
 
         $this->user->notifications->first()->markAsRead();
 
         $this->assertEquals(1, $this->user->notifications->count());
+
         $this->assertEquals(0, $this->user->unreadNotifications->count());
     }
 
     /** @test */
     public function markAllAsRead()
     {
-        $notification = new TestNotification($this->faker->sentence);
-        $this->user->notify($notification);
+        $this->user->notify(
+            new TestNotification($this->faker->sentence)
+        );
+
         $this->user->notifications->markAsRead();
 
         $this->assertEquals(0, $this->user->unreadNotifications->count());
@@ -58,8 +65,9 @@ class NotificationTest extends TestCase
     /** @test */
     public function clearAllNotifications()
     {
-        $notification = new TestNotification($this->faker->sentence);
-        $this->user->notify($notification);
+        $this->user->notify(
+            new TestNotification($this->faker->sentence)
+        );
 
         $this->user->notifications()->delete();
 
