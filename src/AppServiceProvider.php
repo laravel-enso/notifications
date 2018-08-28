@@ -13,9 +13,20 @@ class AppServiceProvider extends ServiceProvider
             AddMissingPermissions::class,
         ]);
 
-        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->load();
 
+        $this->publish();
+    }
+
+    public function load()
+    {
+        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
+
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+    }
+
+    public function publish()
+    {
         $this->publishes([
             __DIR__.'/resources/assets/js' => resource_path('assets/js'),
         ], 'notifications-assets');
