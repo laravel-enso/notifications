@@ -28,11 +28,11 @@ class AppServiceProvider extends ServiceProvider
     public function publish()
     {
         $this->publishes([
-            __DIR__.'/resources/assets/js' => resource_path('assets/js'),
+            __DIR__.'/resources/js' => resource_path('js'),
         ], 'notifications-assets');
 
         $this->publishes([
-            __DIR__.'/resources/assets/js' => resource_path('assets/js'),
+            __DIR__.'/resources/js' => resource_path('js'),
         ], 'enso-assets');
     }
 
