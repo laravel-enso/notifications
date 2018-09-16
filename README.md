@@ -18,6 +18,7 @@ Notifications functionality dependency for [Laravel Enso](https://github.com/lar
 - allows the lazy loading of notifications
 - read and unread notifications are visually differentiated and can be manually/automatically marked as read, as well as cleared
 - polymorphic relationships are used, in order to be able to attach notifications to any entity
+- supports and uses Desktop Notifications, if allowed by the user  
 
 ### Configuration & Usage
 
