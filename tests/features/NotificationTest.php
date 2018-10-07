@@ -76,9 +76,8 @@ class NotificationTest extends TestCase
         $notification = $this->user->notifications->first();
 
         $this->delete(
-                route('core.notifications.destroy', [$notification->id], false)
-            )
-            ->assertStatus(200);
+            route('core.notifications.destroy', [$notification->id], false)
+        )->assertStatus(200);
 
         $this->assertEquals(0, $this->user->notifications()->count());
     }
