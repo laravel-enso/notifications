@@ -22,7 +22,7 @@ class NotificationController extends Controller
         return [
             'count' => $request->user()
                 ->unreadNotifications()
-                ->count()
+                ->count(),
         ];
     }
 

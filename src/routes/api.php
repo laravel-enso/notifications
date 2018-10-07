@@ -5,7 +5,7 @@ Route::middleware(['web', 'auth', 'core'])
     ->namespace('LaravelEnso\Notifications\app\Http\Controllers')
     ->group(function () {
         Route::resource('notifications', 'NotificationController', [
-            'only' => ['index', 'update', 'destroy']
+            'only' => ['index', 'update', 'destroy'],
         ]);
 
         Route::prefix('notifications')->as('notifications.')
