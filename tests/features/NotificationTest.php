@@ -49,7 +49,7 @@ class NotificationTest extends TestCase
 
         $notification = $this->user->notifications->first();
 
-        $response = $this->patch(
+        $this->patch(
             route('core.notifications.update', [$notification->id], false)
         )->assertStatus(200)
         ->assertJsonFragment([
@@ -62,7 +62,7 @@ class NotificationTest extends TestCase
     {
         $this->user->notify(new TestNotification());
 
-        $response = $this->post(route('core.notifications.updateAll'))
+        $this->post(route('core.notifications.updateAll'))
             ->assertStatus(200);
 
         $this->assertEquals(0, $this->user->fresh()->unreadNotifications->count());
@@ -75,7 +75,7 @@ class NotificationTest extends TestCase
 
         $notification = $this->user->notifications->first();
 
-        $response = $this->delete(
+        $this->delete(
                 route('core.notifications.destroy', [$notification->id], false)
             )
             ->assertStatus(200);
@@ -88,7 +88,7 @@ class NotificationTest extends TestCase
     {
         $this->user->notify(new TestNotification());
 
-        $response = $this->post(route('core.notifications.destroyAll'))
+        $this->post(route('core.notifications.destroyAll'))
             ->assertStatus(200);
 
         $this->assertEquals(0, $this->user->notifications()->count());
