@@ -1,17 +1,14 @@
 <?php
 
 use LaravelEnso\Core\app\Models\User;
-use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\Notification;
-use LaravelEnso\TestHelper\app\Traits\SignIn;
 use Tests\TestCase;
 
 class NotificationTest extends TestCase
 {
-    use RefreshDatabase, SignIn;
+    use RefreshDatabase;
 
-    private $faker;
     private $user;
 
     protected function setUp()
@@ -21,65 +18,88 @@ class NotificationTest extends TestCase
         // $this->withoutExceptionHandling();
 
         $this->seed()
-            ->signIn($this->user = User::first());
-
-        $this->faker = Factory::create();
+            ->actingAs($this->user = User::first());
     }
 
     /** @test */
-    public function getUnreadNotifications()
+    public function can_fetch_notifications_count()
     {
-        $this->user->notify(
-            new TestNotification($this->faker->sentence)
-        );
+        $this->user->notify(new TestNotification());
+
+        $this->get(route('core.notifications.count'))
+            ->assertStatus(200)
+            ->assertJson(['count' => 1]);
 
         $this->assertEquals(1, $this->user->unreadNotifications->count());
     }
 
     /** @test */
-    public function markAsRead()
+    public function can_fetch_notifications()
     {
-        $this->user->notify(
-            new TestNotification($this->faker->sentence)
-        );
-
-        $this->user->notifications->first()->markAsRead();
-
-        $this->assertEquals(1, $this->user->notifications->count());
-
-        $this->assertEquals(0, $this->user->unreadNotifications->count());
+        $this->get(route('core.notifications.index', [
+            'offset' => 0,
+            'limit' => 100
+        ]))->assertStatus(200);
     }
 
     /** @test */
-    public function markAllAsRead()
+    public function can_mark_as_read()
     {
-        $this->user->notify(
-            new TestNotification($this->faker->sentence)
-        );
+        $this->user->notify(new TestNotification());
 
-        $this->user->notifications->markAsRead();
+        $notification = $this->user->notifications->first();
 
-        $this->assertEquals(0, $this->user->unreadNotifications->count());
+        $response = $this->patch(
+            route('core.notifications.update', [$notification->id], false)
+        )->assertStatus(200)
+        ->assertJsonFragment([
+            'read_at' => $notification->refresh()->read_at->toDateTimeString()
+        ]);
     }
 
     /** @test */
-    public function clearAllNotifications()
+    public function can_mark_all_as_read()
     {
-        $this->user->notify(
-            new TestNotification($this->faker->sentence)
-        );
+        $this->user->notify(new TestNotification());
 
-        $this->user->notifications()->delete();
+        $response = $this->post(route('core.notifications.updateAll'))
+            ->assertStatus(200);
 
-        $this->assertEquals(0, $this->user->notifications->count());
+        $this->assertEquals(0, $this->user->fresh()->unreadNotifications->count());
+    }
+
+    /** @test */
+    public function can_destroy_notification()
+    {
+        $this->user->notify(new TestNotification());
+
+        $notification = $this->user->notifications->first();
+
+        $response = $this->delete(
+                route('core.notifications.destroy', [$notification->id], false)
+            )
+            ->assertStatus(200);
+
+        $this->assertEquals(0, $this->user->notifications()->count());
+    }
+
+    /** @test */
+    public function can_destroy_all_notifications()
+    {
+        $this->user->notify(new TestNotification());
+
+        $response = $this->post(route('core.notifications.destroyAll'))
+            ->assertStatus(200);
+
+        $this->assertEquals(0, $this->user->notifications()->count());
     }
 }
 
 class TestNotification extends Notification
 {
-    public function __construct($body)
+    public function __construct()
     {
-        $this->body = $body;
+        $this->body = 'testing';
     }
 
     public function via($notifiable)

@@ -8,41 +8,43 @@ use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationController extends Controller
 {
-    public function index(Request $request, int $offset, int $paginate)
+    public function index(Request $request)
     {
         return $request->user()
             ->notifications()
-            ->skip($offset)
-            ->take($paginate)
+            ->skip($request->get('offset'))
+            ->take($request->get('limit'))
             ->get();
     }
 
-    public function getCount(Request $request)
+    public function count(Request $request)
     {
-        return $request->user()
-            ->unreadNotifications()
-            ->count();
+        return [
+            'count' => $request->user()
+                ->unreadNotifications()
+                ->count()
+        ];
     }
 
-    public function markAsRead(DatabaseNotification $notification)
+    public function update(DatabaseNotification $notification)
     {
         return tap($notification)
             ->markAsRead();
     }
 
-    public function markAllAsRead(Request $request)
+    public function updateAll(Request $request)
     {
         $request->user()
             ->unreadNotifications
             ->markAsRead();
     }
 
-    public function clear(DatabaseNotification $notification)
+    public function destroy(DatabaseNotification $notification)
     {
         $notification->delete();
     }
 
-    public function clearAll(Request $request)
+    public function destroyAll(Request $request)
     {
         $request->user()
             ->notifications()
