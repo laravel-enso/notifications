@@ -4,10 +4,6 @@ use LaravelEnso\StructureManager\app\Classes\StructureMigration;
 
 class CreateStructureForNotifications extends StructureMigration
 {
-    protected $permissionGroup = [
-        'name' => 'core.notifications', 'description' => 'Notifications permissions group',
-    ];
-
     protected $permissions = [
         ['name' => 'core.notifications.index', 'description' => 'Notifications index', 'type' => 0, 'is_default' => true],
         ['name' => 'core.notifications.count', 'description' => 'Get users notifications count', 'type' => 1, 'is_default' => true],
