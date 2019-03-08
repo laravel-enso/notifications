@@ -1,9 +1,9 @@
 <?php
 
-use LaravelEnso\Core\app\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Notifications\Notification;
 use Tests\TestCase;
+use LaravelEnso\Core\app\Models\User;
+use Illuminate\Notifications\Notification;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class NotificationTest extends TestCase
 {
@@ -11,7 +11,7 @@ class NotificationTest extends TestCase
 
     private $user;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -38,7 +38,7 @@ class NotificationTest extends TestCase
     {
         $this->get(route('core.notifications.index', [
             'offset' => 0,
-            'limit' => 100
+            'paginate' => 100
         ]))->assertStatus(200);
     }
 
@@ -50,7 +50,7 @@ class NotificationTest extends TestCase
         $notification = $this->user->notifications->first();
 
         $this->patch(
-            route('core.notifications.update', [$notification->id], false)
+            route('core.notifications.read', [$notification->id], false)
         )->assertStatus(200)
         ->assertJsonFragment([
             'read_at' => $notification->refresh()->read_at->toDateTimeString()
@@ -62,7 +62,7 @@ class NotificationTest extends TestCase
     {
         $this->user->notify(new TestNotification());
 
-        $this->post(route('core.notifications.updateAll'))
+        $this->post(route('core.notifications.readAll'))
             ->assertStatus(200);
 
         $this->assertEquals(0, $this->user->fresh()->unreadNotifications->count());
