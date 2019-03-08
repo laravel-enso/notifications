@@ -5,15 +5,17 @@ Route::middleware(['web', 'auth', 'core'])
     ->namespace('LaravelEnso\Notifications\app\Http\Controllers')
     ->group(function () {
         Route::resource('notifications', 'NotificationController', [
-            'only' => ['index', 'update', 'destroy'],
+            'only' => ['index', 'destroy'],
         ]);
 
         Route::prefix('notifications')->as('notifications.')
             ->group(function () {
                 Route::get('count', 'NotificationController@count')
                     ->name('count');
-                Route::post('updateAll', 'NotificationController@updateAll')
-                    ->name('updateAll');
+                Route::patch('read/{notification}', 'NotificationController@read')
+                    ->name('read');
+                Route::post('readAll', 'NotificationController@readAll')
+                    ->name('readAll');
                 Route::post('destroyAll', 'NotificationController@destroyAll')
                     ->name('destroyAll');
             });

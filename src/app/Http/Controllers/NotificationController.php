@@ -13,7 +13,7 @@ class NotificationController extends Controller
         return $request->user()
             ->notifications()
             ->skip($request->get('offset'))
-            ->take($request->get('limit'))
+            ->take($request->get('paginate'))
             ->get();
     }
 
@@ -26,13 +26,13 @@ class NotificationController extends Controller
         ];
     }
 
-    public function update(DatabaseNotification $notification)
+    public function read(DatabaseNotification $notification)
     {
         return tap($notification)
             ->markAsRead();
     }
 
-    public function updateAll(Request $request)
+    public function readAll(Request $request)
     {
         $request->user()
             ->unreadNotifications
