@@ -22,7 +22,7 @@ Notifications functionality dependency for [Laravel Enso](https://github.com/lar
 
 ### Configuration & Usage
 
-Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/packages/notifications.html)
+Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/notifications.html)
 
 ### Contributions
 
