@@ -32,7 +32,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelEnso\\Notifications\\AppServiceProvider"
+                "LaravelEnso\\Notifications\\AppServiceProvider",
+                "LaravelEnso\\Notifications\\BroadcastServiceProvider"
             ],
             "aliases": {}
         }
