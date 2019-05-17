@@ -1,21 +1,14 @@
 <?php
 
 Route::middleware(['web', 'auth', 'core'])
-    ->prefix('api/core')->as('core.')
+    ->prefix('api/core/notifications')
+    ->as('core.notifications.')
     ->namespace('LaravelEnso\Notifications\app\Http\Controllers')
     ->group(function () {
-        Route::resource('notifications', 'NotificationController')
-            ->only('index', 'destroy');
-
-        Route::prefix('notifications')->as('notifications.')
-            ->group(function () {
-                Route::get('count', 'NotificationController@count')
-                    ->name('count');
-                Route::patch('read/{notification}', 'NotificationController@read')
-                    ->name('read');
-                Route::post('readAll', 'NotificationController@readAll')
-                    ->name('readAll');
-                Route::post('destroyAll', 'NotificationController@destroyAll')
-                    ->name('destroyAll');
-            });
+        Route::get('', 'Index')->name('index');
+        Route::delete('{notification}', 'Destroy')->name('destroy');
+        Route::get('count', 'Count')->name('count');
+        Route::patch('read/{notification}', 'Read')->name('read');
+        Route::post('readAll', 'ReadAll')->name('readAll');
+        Route::post('destroyAll', 'DestroyAll')->name('destroyAll');
     });

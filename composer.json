@@ -7,7 +7,7 @@
         "push-notifications",
         "laravel-notifications"
     ],
-    "homepage": "https://github.com/laravel-enso/Notifications",
+    "homepage": "https://github.com/laravel-enso/notifications",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -20,8 +20,8 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel-enso/core": "4.2.*",
-        "laravel-enso/structuremanager": "3.0.*",
+        "laravel-enso/core": "4.3.*",
+        "laravel-enso/migrator": "1.0.*",
         "pusher/pusher-php-server": "^3.0"
     },
     "autoload": {
