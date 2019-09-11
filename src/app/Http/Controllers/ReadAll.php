@@ -9,8 +9,6 @@ class ReadAll extends Controller
 {
     public function __invoke(Request $request)
     {
-        $request->user()
-            ->unreadNotifications
-            ->markAsRead();
+        $request->user()->unreadNotifications->markAsRead();
     }
 }

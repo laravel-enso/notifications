@@ -101,12 +101,12 @@ class TestNotification extends Notification
         $this->body = 'testing';
     }
 
-    public function via($notifiable)
+    public function via()
     {
         return ['database'];
     }
 
-    public function toArray($notifiable)
+    public function toArray()
     {
         return [
             'body' => $this->body,
