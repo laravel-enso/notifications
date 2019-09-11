@@ -10,7 +10,7 @@ class Count extends Controller
     public function __invoke(Request $request)
     {
         return [
-            'count' => $request->user()->unreadNotifications()->count()
+            'count' => $request->user()->unreadNotifications()->count(),
         ];
     }
 }
