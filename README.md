@@ -18,20 +18,7 @@ For live examples and demos, you may visit [laravel-enso.com](https://www.larave
 
 <sup>click on the photo to view a short demo in compatible browsers</sup>
 
-## Installation
-
-Comes pre-installed in Enso.
-
-## Features
-
-- uses [Pusher](https://pusher.com/) and [Laravel's notification infrastructure](https://laravel.com/docs/5.5/broadcasting) to bring minimal-setup notification functionality
-- users can also be notified via email
-- allows the lazy loading of notifications
-- read and unread notifications are visually differentiated and can be manually/automatically marked as read, as well as cleared
-- polymorphic relationships are used, in order to be able to attach notifications to any entity
-- supports and uses Desktop Notifications if allowed by the user
-
-## Configuration & Usage
+### Installation, Configuration & Usage
 
 Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/backend/notifications.html)
 
