@@ -9,8 +9,15 @@ class BroadcastServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Broadcast::channel('App.User.{id}', function ($user, $id) {
+        Broadcast::channel($this->channel(), function ($user, $id) {
             return (int) $user->id === (int) $id;
         });
+    }
+
+    private function channel()
+    {
+        return collect(
+            explode('\\', config('auth.providers.users.model'))
+        )->push('{id}')->implode('.');
     }
 }
