@@ -8,6 +8,8 @@ use Illuminate\Support\ServiceProvider;
 
 class BroadcastServiceProvider extends ServiceProvider
 {
+    private static $channel;
+
     public function boot()
     {
         Broadcast::channel(
@@ -18,7 +20,7 @@ class BroadcastServiceProvider extends ServiceProvider
 
     private function channel()
     {
-        return (new Collection(
+        return self::$channel ??= (new Collection(
             explode('\\', config('auth.providers.users.model'))
         ))->push('{id}')->implode('.');
     }

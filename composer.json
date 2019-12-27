@@ -1,6 +1,6 @@
 {
     "name": "laravel-enso/notifications",
-    "description": "Notifications functionality dependency for LaravelEnso",
+    "description": "Push notifications dependency for LaravelEnso",
     "keywords": [
         "laravel-enso",
         "notifications",
