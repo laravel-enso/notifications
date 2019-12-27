@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::middleware(['web', 'auth', 'core'])
+    ->namespace('LaravelEnso\Notifications\app\Http\Controllers')
     ->prefix('api/core/notifications')
     ->as('core.notifications.')
-    ->namespace('LaravelEnso\Notifications\app\Http\Controllers')
     ->group(function () {
         Route::get('', 'Index')->name('index');
         Route::delete('{notification}', 'Destroy')->name('destroy');

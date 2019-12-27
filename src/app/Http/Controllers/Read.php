@@ -9,7 +9,6 @@ class Read extends Controller
 {
     public function __invoke(DatabaseNotification $notification)
     {
-        return tap($notification)
-            ->markAsRead();
+        return tap($notification)->markAsRead();
     }
 }

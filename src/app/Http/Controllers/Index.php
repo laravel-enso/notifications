@@ -9,8 +9,7 @@ class Index extends Controller
 {
     public function __invoke(Request $request)
     {
-        return $request->user()
-            ->notifications()
+        return $request->user()->notifications()
             ->skip($request->get('offset'))
             ->take($request->get('paginate'))
             ->get();

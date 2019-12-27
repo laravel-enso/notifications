@@ -9,8 +9,6 @@ class DestroyAll extends Controller
 {
     public function __invoke(Request $request)
     {
-        $request->user()
-            ->notifications()
-            ->delete();
+        $request->user()->notifications()->delete();
     }
 }
