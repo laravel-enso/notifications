@@ -9,9 +9,9 @@ class BroadcastServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Broadcast::channel($this->channel(), function ($user, $id) {
-            return (int) $user->id === (int) $id;
-        });
+        Broadcast::channel($this->channel(), fn ($user, $id) => (
+            (int) $user->id === (int) $id
+        ));
     }
 
     private function channel()
