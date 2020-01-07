@@ -1,7 +1,7 @@
 <?php
 
 use Tests\TestCase;
-use LaravelEnso\Core\app\Models\User;
+use LaravelEnso\Core\App\Models\User;
 use Illuminate\Notifications\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
