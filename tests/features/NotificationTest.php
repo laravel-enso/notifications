@@ -1,9 +1,9 @@
 <?php
 
-use Tests\TestCase;
-use LaravelEnso\Core\App\Models\User;
-use Illuminate\Notifications\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Notifications\Notification;
+use LaravelEnso\Core\App\Models\User;
+use Tests\TestCase;
 
 class NotificationTest extends TestCase
 {
@@ -38,7 +38,7 @@ class NotificationTest extends TestCase
     {
         $this->get(route('core.notifications.index', [
             'offset' => 0,
-            'paginate' => 100
+            'paginate' => 100,
         ]))->assertStatus(200);
     }
 
@@ -52,9 +52,9 @@ class NotificationTest extends TestCase
         $this->patch(
             route('core.notifications.read', [$notification->id], false)
         )->assertStatus(200)
-        ->assertJsonFragment([
-            'read_at' => $notification->refresh()->read_at->toDateTimeString()
-        ]);
+            ->assertJsonFragment([
+                'read_at' => $notification->refresh()->read_at->toJson(),
+            ]);
     }
 
     /** @test */
