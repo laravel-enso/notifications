@@ -1,10 +1,10 @@
 <?php
 
-use LaravelEnso\Migrator\App\Database\Migration;
+use LaravelEnso\Migrator\Database\Migration;
 
 class CreateStructureForNotifications extends Migration
 {
-    protected $permissions = [
+    protected array $permissions = [
         ['name' => 'core.notifications.index', 'description' => 'Notifications index', 'is_default' => true],
         ['name' => 'core.notifications.count', 'description' => 'Get users notifications count', 'is_default' => true],
         ['name' => 'core.notifications.read', 'description' => 'Mark notification as read', 'is_default' => true],

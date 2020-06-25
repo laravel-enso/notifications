@@ -1,14 +1,14 @@
 <?php
 
-namespace LaravelEnso\Notifications\App\Http\Controllers;
+namespace LaravelEnso\Notifications\Http\Controllers;
 
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Routing\Controller;
 
-class Destroy extends Controller
+class Read extends Controller
 {
     public function __invoke(DatabaseNotification $notification)
     {
-        $notification->delete();
+        return tap($notification)->markAsRead();
     }
 }

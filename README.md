@@ -1,6 +1,6 @@
 # Notifications
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/950c5954bb654bb588061a3f793f4697)](https://www.codacy.com/app/laravel-enso/notifications?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/notifications&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2d66701f3de944f188795401b954360d)](https://www.codacy.com/gh/laravel-enso/notifications?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/notifications&amp;utm_campaign=Badge_Grade)
 [![StyleCI](https://github.styleci.io/repos/85684795/shield?branch=master)](https://github.styleci.io/repos/85684795)
 [![License](https://poser.pugx.org/laravel-enso/notifications/license)](https://packagist.org/packages/laravel-enso/notifications)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/notifications/downloads)](https://packagist.org/packages/laravel-enso/notifications)

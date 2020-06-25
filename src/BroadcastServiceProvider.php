@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 
 class BroadcastServiceProvider extends ServiceProvider
 {
-    private static $channel;
+    private static string $channel;
 
     public function boot()
     {

@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\Notification;
-use LaravelEnso\Core\App\Models\User;
+use LaravelEnso\Core\Models\User;
 use Tests\TestCase;
 
 class NotificationTest extends TestCase

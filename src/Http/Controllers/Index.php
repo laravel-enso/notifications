@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Notifications\App\Http\Controllers;
+namespace LaravelEnso\Notifications\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;

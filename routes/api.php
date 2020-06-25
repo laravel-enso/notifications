@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['web', 'auth', 'core'])
-    ->namespace('LaravelEnso\Notifications\App\Http\Controllers')
+Route::middleware(['api', 'auth', 'core'])
+    ->namespace('LaravelEnso\Notifications\Http\Controllers')
     ->prefix('api/core/notifications')
     ->as('core.notifications.')
     ->group(function () {
