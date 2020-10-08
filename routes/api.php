@@ -1,16 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use LaravelEnso\Notifications\Http\Controllers\Count;
+use LaravelEnso\Notifications\Http\Controllers\Destroy;
+use LaravelEnso\Notifications\Http\Controllers\DestroyAll;
+use LaravelEnso\Notifications\Http\Controllers\Index;
+use LaravelEnso\Notifications\Http\Controllers\Read;
+use LaravelEnso\Notifications\Http\Controllers\ReadAll;
 
 Route::middleware(['api', 'auth', 'core'])
-    ->namespace('LaravelEnso\Notifications\Http\Controllers')
     ->prefix('api/core/notifications')
     ->as('core.notifications.')
     ->group(function () {
-        Route::get('', 'Index')->name('index');
-        Route::delete('{notification}', 'Destroy')->name('destroy');
-        Route::get('count', 'Count')->name('count');
-        Route::patch('read/{notification}', 'Read')->name('read');
-        Route::post('readAll', 'ReadAll')->name('readAll');
-        Route::post('destroyAll', 'DestroyAll')->name('destroyAll');
+        Route::get('', Index::class)->name('index');
+        Route::delete('{notification}', Destroy::class)->name('destroy');
+        Route::get('count', Count::class)->name('count');
+        Route::patch('read/{notification}', Read::class)->name('read');
+        Route::post('readAll', ReadAll::class)->name('readAll');
+        Route::post('destroyAll', DestroyAll::class)->name('destroyAll');
     });
