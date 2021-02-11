@@ -87,7 +87,7 @@ class NotificationTest extends TestCase
     {
         $this->user->notify(new TestNotification());
 
-        $this->post(route('core.notifications.destroyAll'))
+        $this->delete(route('core.notifications.destroyAll'))
             ->assertStatus(200);
 
         $this->assertEquals(0, $this->user->notifications()->count());
