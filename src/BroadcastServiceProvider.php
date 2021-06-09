@@ -4,6 +4,7 @@ namespace LaravelEnso\Notifications;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 class BroadcastServiceProvider extends ServiceProvider
@@ -20,8 +21,8 @@ class BroadcastServiceProvider extends ServiceProvider
 
     private function channel()
     {
-        return self::$channel ??= (new Collection(
-            explode('\\', config('auth.providers.users.model'))
-        ))->push('{id}')->implode('.');
+        return self::$channel ??= Collection::wrap(
+            explode('\\', Config::get('auth.providers.users.model'))
+        )->push('{id}')->implode('.');
     }
 }
