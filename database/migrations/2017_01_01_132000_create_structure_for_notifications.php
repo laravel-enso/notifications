@@ -2,7 +2,7 @@
 
 use LaravelEnso\Migrator\Database\Migration;
 
-class CreateStructureForNotifications extends Migration
+return new class extends Migration
 {
     protected array $permissions = [
         ['name' => 'core.notifications.index', 'description' => 'Notifications index', 'is_default' => true],
@@ -12,4 +12,4 @@ class CreateStructureForNotifications extends Migration
         ['name' => 'core.notifications.destroy', 'description' => 'Clear a notification', 'is_default' => true],
         ['name' => 'core.notifications.destroyAll', 'description' => 'Clear all notifications', 'is_default' => true],
     ];
-}
+};
