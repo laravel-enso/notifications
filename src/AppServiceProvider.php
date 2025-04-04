@@ -3,6 +3,7 @@
 namespace LaravelEnso\Notifications;
 
 use Illuminate\Support\ServiceProvider;
+use LaravelEnso\Notifications\Commands\PurgeDeprecatedNotifications;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,5 +12,7 @@ class AppServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        $this->commands(PurgeDeprecatedNotifications::class);
     }
 }
