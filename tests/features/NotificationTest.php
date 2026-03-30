@@ -4,6 +4,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\Notification;
 use LaravelEnso\Users\Models\User;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class NotificationTest extends TestCase
 {
@@ -19,7 +20,7 @@ class NotificationTest extends TestCase
             ->actingAs($this->user = User::first());
     }
 
-    /** @test */
+    #[Test]
     public function can_fetch_notifications_count()
     {
         $this->user->notify(new TestNotification());
@@ -31,7 +32,7 @@ class NotificationTest extends TestCase
         $this->assertEquals(1, $this->user->unreadNotifications->count());
     }
 
-    /** @test */
+    #[Test]
     public function can_fetch_notifications()
     {
         $this->get(route('core.notifications.index', [
@@ -40,7 +41,7 @@ class NotificationTest extends TestCase
         ]))->assertStatus(200);
     }
 
-    /** @test */
+    #[Test]
     public function can_mark_as_read()
     {
         $this->user->notify(new TestNotification());
@@ -55,7 +56,7 @@ class NotificationTest extends TestCase
             ]);
     }
 
-    /** @test */
+    #[Test]
     public function can_mark_all_as_read()
     {
         $this->user->notify(new TestNotification());
@@ -66,7 +67,7 @@ class NotificationTest extends TestCase
         $this->assertEquals(0, $this->user->fresh()->unreadNotifications->count());
     }
 
-    /** @test */
+    #[Test]
     public function can_destroy_notification()
     {
         $this->user->notify(new TestNotification());
@@ -80,7 +81,7 @@ class NotificationTest extends TestCase
         $this->assertEquals(0, $this->user->notifications()->count());
     }
 
-    /** @test */
+    #[Test]
     public function can_destroy_all_notifications()
     {
         $this->user->notify(new TestNotification());
