@@ -67,6 +67,10 @@ Required packages:
 - [`laravel-enso/migrator`](https://docs.laravel-enso.com/backend/migrator.html) [↗](https://github.com/laravel-enso/migrator)
 - `pusher/pusher-php-server`
 
+Companion frontend package:
+
+- [`@enso-ui/notifications`](https://docs.laravel-enso.com/frontend/notifications.html) [↗](https://github.com/enso-ui/notifications)
+
 ## Contributions
 
 are welcome. Pull requests are great, but issues are good too.
