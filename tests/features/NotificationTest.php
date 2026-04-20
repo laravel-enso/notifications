@@ -3,8 +3,8 @@
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\Notification;
 use LaravelEnso\Users\Models\User;
-use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
+use Tests\TestCase;
 
 class NotificationTest extends TestCase
 {
@@ -36,7 +36,7 @@ class NotificationTest extends TestCase
     public function can_fetch_notifications()
     {
         $this->get(route('core.notifications.index', [
-            'offset' => 0,
+            'offset'   => 0,
             'paginate' => 100,
         ]))->assertStatus(200);
     }

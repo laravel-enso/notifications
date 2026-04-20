@@ -2,8 +2,7 @@
 
 use LaravelEnso\Migrator\Database\Migration;
 
-return new class extends Migration
-{
+return new class() extends Migration {
     protected array $permissions = [
         ['name' => 'core.notifications.index', 'description' => 'Notifications index', 'is_default' => true],
         ['name' => 'core.notifications.count', 'description' => 'Get users notifications count', 'is_default' => true],
