@@ -51,7 +51,7 @@ class NotificationTest extends TestCase
         $otherUser->notify(new TestNotification());
 
         $response = $this->get(route('core.notifications.index', [
-            'offset' => 1,
+            'offset'   => 1,
             'paginate' => 1,
         ], false))->assertStatus(200);
 
